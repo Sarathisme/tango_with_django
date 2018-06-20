@@ -1,0 +1,27 @@
+[
+    {
+        "model": "rango.Category",
+        "pk": 1,
+        "fields": {
+            "name": "Python"
+        }
+    },
+
+    {
+        "model": "rango.Category",
+        "pk": 2,
+        "fields": {
+            "name": "Django"
+        }
+    },
+    {
+        "model": "rango.Page",
+        "pk": 3,
+        "fields": {
+            "category": "Python",
+            "title": "Intro to Python",
+            "url": "http://www.python.org",
+            "views": 0
+        }
+    }
+]

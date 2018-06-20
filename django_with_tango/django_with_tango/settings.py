@@ -22,6 +22,9 @@ TEMPLATE_PATH = os.path.join(PROJECT_PATH, 'templates')
 # Database Path
 DATABASE_PATH = os.path.join(PROJECT_PATH, 'rango.db')
 
+# Fixtures path
+FIXTURES_PATH = os.path.join(PROJECT_PATH, 'fixtures')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
@@ -136,3 +139,7 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(PROJECT_PATH, 'media')
+
+FIXTURE_DIRS = [
+     FIXTURES_PATH,
+ ]
