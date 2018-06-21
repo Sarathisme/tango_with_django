@@ -9,4 +9,6 @@ def index(request):
     return render_to_response('rango/index.html', context_dict, context)
 
 def about(request):
-    return HttpResponse("Rango says: Go back to the main page <a href='/rango/'>Home</a>")
+    context = RequestContext(request)
+    data = {"linkname" : "Go back to Home page"}
+    return render_to_response("rango/about.html", data, context)
