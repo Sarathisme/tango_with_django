@@ -10,7 +10,7 @@ from rango.models import Category, Page
 def populate():
 # First, we will create lists of dictionaries containing the pages
 # we want to add into each category.
-# Then we will create a dictionary of dictionaries for our categories. # This might seem a little bit confusing, but it allows us to iterate # through each data structure, and add the data to our models.
+# Then we will create a dictionary of dictionaries for our categories_values. # This might seem a little bit confusing, but it allows us to iterate # through each data structure, and add the data to our models.
 
     python_pages = [
         {"title": "Official Python Tutorial",
@@ -42,11 +42,26 @@ def populate():
         "Other Frameworks": {"pages": other_pages} 
     }
 
+    categories_values = {
+        "Python": {
+            "views": 128,
+            "likes": 64,
+        },
+        "Django": {
+            "views": 64,
+            "likes": 32,
+        },
+        "Other Frameworks": {
+            "views": 32,
+            "likes": 16,
+        }
+    }
+
     for cat, cat_data in cats.items(): 
-        c = add_cat(cat)
+        c = add_cat(cat, categories_values[cat]['views'], categories_values[cat]['likes'])
         for p in cat_data["pages"]:
                 add_page(c, p["title"], p["url"])
-    # Print out the categories we have added.
+    # Print out the categories_values we have added.
     for c in Category.objects.all():
         for p in Page.objects.filter(category=c):
             print("- {0} - {1}".format(str(c), str(p)))
@@ -58,8 +73,8 @@ def add_page(cat, title, url, views=0):
     p.save()
     return p
 
-def add_cat(name):
-    c = Category.objects.get_or_create(name=name)[0] 
+def add_cat(name, views, likes):
+    c = Category.objects.get_or_create(name=name, views=views, likes=likes)[0] 
     c.save()
     return c
 
