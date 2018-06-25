@@ -1,7 +1,7 @@
 <ul>
     {% if cats %}
-        {% for cat in cats %}
-            <li><a href="{% url 'show_category' cat.url %}">{{ cat.name }}</a></li>
+        {% for category in cats %}
+            <li><a href="{% url 'show_category' category.slug %}">{{ category.name }}</a></li>
         {% endfor %}
     {% else %}
         <strong>There is no category present</strong>

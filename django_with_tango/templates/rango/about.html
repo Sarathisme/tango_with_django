@@ -8,5 +8,8 @@
 {% block body_block %}
     <h1>Hey! Know more about Django!</h1>
     <a href='{% url 'index' %}'>{{ linkname }}</a>
+    {% if visits %}
+        <h4>Visits: {{ visits }}</h4>
+    {% endif %}
     <img src="{% static "rango.jpg" %}" alt="Picture of Rango">
 {% endblock %}
