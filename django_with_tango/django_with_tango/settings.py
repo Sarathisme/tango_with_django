@@ -153,4 +153,4 @@ REGISTRATION_AUTO_LOGIN = True
 
 LOGIN_REDIRECT_URL = '/rango/'
 
-LOGIN_URL = '/accounts/login/'
+LOGIN_URL = '/login/'
