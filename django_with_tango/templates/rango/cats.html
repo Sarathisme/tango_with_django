@@ -1,7 +1,7 @@
-<ul>
+<ul class='list-group'>
     {% if cats %}
         {% for category in cats %}
-            <li><a href="{% url 'show_category' category.slug %}">{{ category.name }}</a></li>
+            <li class='list-group-item'><a href="{% url 'show_category' category.slug %}">{{ category.name }}</a></li>
         {% endfor %}
     {% else %}
         <strong>There is no category present</strong>
