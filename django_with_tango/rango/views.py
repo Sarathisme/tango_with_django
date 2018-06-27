@@ -1,13 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import RequestContext
-from django.shortcuts import render_to_response
 from rango.models import Category, Page
 from rango.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
+from rango.webhoseio_search import get_results
 
 def index(request):
     print("Here at index")
@@ -31,7 +31,7 @@ def show_category(request, category_name):
     context_dict = {}
     try:
         category = Category.objects.get(slug=category_name)
-        pages = Page.objects.filter(category=category)
+        pages = Page.objects.filter(category=category).order_by('-views')
         context_dict['pages'] = pages
         context_dict['category'] = category
 
@@ -157,3 +157,25 @@ def get_server_side_cookie(request, cookie, default_val=None):
         return default_val
     else:
         return val
+
+def search(request):
+    result_list = []
+
+    if request.method == 'POST':
+        query = request.POST['query'].strip()
+        if query:
+            result_list = get_results(query)
+    
+    return render(request,'rango/search.html', {'result_list': result_list})
+
+def track_url(request):
+    if request.method == 'GET':
+        if 'pageid' in request.GET:
+            page = Page.objects.get(id=request.GET['pageid'])
+            page.views = page.views + 1
+            page.save()
+    else:
+        return HttpResponseRedirect(reverse(index))
+    
+    return redirect(page.url)
+    
