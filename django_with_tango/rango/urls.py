@@ -11,6 +11,9 @@ urlpatterns = [
     url(r'^register/$', views.register, name='register'),
     url(r'^login/$', views.user_login, name='login'),
     url(r'^logout/$', views.user_logout, name='logout'),
-    url(r'^search/$', views.search, name='search'),
-    url(r'^goto/$', views.track_url, name='goto')
+    url(r'^goto/$', views.track_url, name='goto'),
+    url(r'^like_category/$', views.like_category, name='like_category'),
+    url(r'^suggest_category/$', views.suggest_category, name='suggest_category'),
+    url(r'^insert_page/$', views.insert_page, name='insert_page'),
+    url(r'^profile/$', views.profile, name='profile'),
 ]

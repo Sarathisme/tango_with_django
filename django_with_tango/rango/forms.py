@@ -33,15 +33,16 @@ class PageForm(forms.ModelForm):
 
 
 class UserForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput())
-
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control', 'type':'password', 'placeholder': '******' }))
+    username = forms.CharField(widget=forms.TextInput(attrs={'class':'form-control', 'type':'text', 'placeholder': 'johndoe' }))
+    email = forms.EmailField(widget=forms.TextInput(attrs={'class':'form-control', 'type':'email', 'placeholder': 'johndoe@xyz.com' }))
     class Meta:
         model = User
         fields = ('username', 'email', 'password')
 
 
 class UserProfileForm(forms.ModelForm):
-    website = forms.URLField(required=False)
+    website = forms.URLField(required=False, widget=forms.TextInput(attrs={'class':'form-control', 'type':'text', 'placeholder': 'http://www.xyz.com' }))
     picture = forms.ImageField(required=False)
     class Meta:
         model = UserProfile

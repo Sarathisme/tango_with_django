@@ -17,6 +17,9 @@
 
     </title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/dashboard/">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{% static "js/rango-query.js" %}"></script>
+    <script src="{% static "js/rango-ajax.js" %}"></script>
 
     <!-- Bootstrap core CSS -->
     <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -43,7 +46,7 @@
           </li>
 
           <li class="nav-item">
-              <a class="nav-link" href="{% url 'search' %}">Search </a>
+              <a class="nav-link" href="{% url 'profile' %}">Profile </a>
             </li>
 
           {% if user.is_authenticated %}
@@ -73,7 +76,17 @@
       <div class="row">
         <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar">
             {% block sidebar_block %}
-              {% get_categories %}
+            <h5 class="nav-header"> &nbsp &nbsp &nbsp &nbsp Find a Category</h5>
+            <ul class="nav nav-list">
+                <li>
+                  <form>
+                      &nbsp &nbsp &nbsp <input id='suggestion' class="search-query span10" type="text">
+                  </form>
+              </li>
+            </ul>
+            <div id="cats"> 
+                {% get_categories %}
+            </div>
             {% endblock %}
         </nav>
 
