@@ -38,7 +38,7 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete='CASCADE')
 
     website = models.URLField(blank=True)
-    pictures = models.ImageField(upload_to='profile_pictures', blank=True)
+    pictures = models.ImageField(upload_to='profile_pictures/', blank=True)
 
     def __str__(self):
         return self.user.username

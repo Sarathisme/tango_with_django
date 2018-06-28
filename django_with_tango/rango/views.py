@@ -11,19 +11,16 @@ from rango.webhoseio_search import get_results
 
 def index(request):
     print("Here at index")
-    request.session.set_test_cookie()
     visitor_cookie_handler(request)
     category_list = Category.objects.order_by('-likes')[:5]
+    pages_list = Page.objects.order_by('-views')[:5]
     print(request.session.get('visits')) 
-    context_dict = {"categories": category_list, 'visits': request.session.get('visits')}
+    context_dict = {"categories": category_list, 'visits': request.session.get('visits'), 'pages': pages_list}
     response = render(request, 'rango/index.html', context_dict)
     print("COOKIE VISITS ", request.session['visits'])
     return response
 
 def about(request):
-    if request.session.test_cookie_worked():
-        print("Test cookie worked!")
-        request.session.delete_test_cookie()
     data = {"linkname" : "Go back to Home page", 'visits': request.session.get(request.user.username)}
     return render(request, "rango/about.html", data)
 
