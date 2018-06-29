@@ -59,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'django_with_tango.urls'
@@ -133,8 +134,11 @@ STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
 
-STATICFILES_DIRS = [
-]
+STATICFILES_DIRS = (
+    STATIC_ROOT,
+)
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 # Media files to be stored while uploading
 
@@ -154,7 +158,7 @@ REGISTRATION_AUTO_LOGIN = True
 
 LOGIN_REDIRECT_URL = '/rango/'
 
-LOGIN_URL = '/login/'
+LOGIN_URL = '/rango/login/'
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
