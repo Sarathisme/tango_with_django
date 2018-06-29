@@ -23,6 +23,7 @@ urlpatterns = [
     re_path(r'^$', views.index, name='index'),
     path('admin/', admin.site.urls),
     path('rango/', include('rango.urls')),
+    re_path(r'^login/$', views.login, name='login'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
