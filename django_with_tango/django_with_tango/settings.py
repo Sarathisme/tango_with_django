@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -86,7 +87,7 @@ WSGI_APPLICATION = 'django_with_tango.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': DATABASE_PATH,
     }
 }
@@ -130,10 +131,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_PATH = os.path.join(PROJECT_PATH, 'static')
+STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
 
 STATICFILES_DIRS = [
-    STATIC_PATH,
+    STATIC_ROOT,
 ]
 
 # Media files to be stored while uploading
@@ -155,3 +156,6 @@ REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = '/rango/'
 
 LOGIN_URL = '/login/'
+
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
