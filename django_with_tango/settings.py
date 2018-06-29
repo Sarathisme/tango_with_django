@@ -33,7 +33,7 @@ FIXTURES_PATH = os.path.join(PROJECT_PATH, 'fixtures')
 SECRET_KEY = 'a%-a5!h=u8f1a=u&2-=%c!!pf3=$h#x_3d@!$%$h@32w4pcf#1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -154,7 +154,7 @@ REGISTRATION_AUTO_LOGIN = True
 
 LOGIN_REDIRECT_URL = '/rango/'
 
-LOGIN_URL = '/login/'
+LOGIN_URL = '/rango/login/'
 
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
