@@ -134,7 +134,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(PROJECT_PATH, 'static')
 
 STATICFILES_DIRS = [
-    STATIC_ROOT,
 ]
 
 # Media files to be stored while uploading
