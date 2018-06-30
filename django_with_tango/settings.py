@@ -33,7 +33,7 @@ FIXTURES_PATH = os.path.join(PROJECT_PATH, 'fixtures')
 SECRET_KEY = 'a%-a5!h=u8f1a=u&2-=%c!!pf3=$h#x_3d@!$%$h@32w4pcf#1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
